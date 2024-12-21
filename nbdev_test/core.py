@@ -16,8 +16,14 @@ from typing import List, Tuple, Union, Optional
 import os
 import logging
 
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[logging.StreamHandler()]  # This ensures logs go to console
+)
+
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
+logger.debug("This will be visible in GitHub Actions")
 
 # %% ../nbs/00_core.ipynb 4
 class ImageDataset(Dataset):
