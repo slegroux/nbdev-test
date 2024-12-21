@@ -15,7 +15,9 @@ from torch.utils.data import DataLoader, random_split, Dataset
 from typing import List, Tuple, Union, Optional
 import os
 import logging
+
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 
 # %% ../nbs/00_core.ipynb 4
 class ImageDataset(Dataset):
@@ -86,13 +88,16 @@ class MNISTDataset(ImageDataset):
         os.makedirs(data_dir, exist_ok=True)
         super().__init__()
         logger.info("MNISTDataset: init")
+        try:
+            self.ds = MNIST(
+                data_dir,
+                train = train,
+                transform=transform, 
+                download=True
+            )
+        except Exception as e:
+            logger.error(f"Error loading MNIST dataset: {e}")
 
-        self.ds = MNIST(
-            data_dir,
-            train = train,
-            transform=transform, 
-            download=True
-        )
 
     def __len__(self) -> int: # length of dataset
         return len(self.ds)
