@@ -1,0 +1,52 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "nbdev-test",
+    "section": "",
+    "text": "This file will become your README and also the index of your documentation.",
+    "crumbs": [
+      "nbdev-test"
+    ]
+  },
+  {
+    "objectID": "index.html#developer-guide",
+    "href": "index.html#developer-guide",
+    "title": "nbdev-test",
+    "section": "Developer Guide",
+    "text": "Developer Guide\nIf you are new to using nbdev here are some useful pointers to get you started.\n\nInstall nbdev_test in Development mode\n# make sure nbdev_test package is installed in development mode\n$ pip install -e .\n\n# make changes under nbs/ directory\n# ...\n\n# compile to have changes apply to nbdev_test\n$ nbdev_prepare",
+    "crumbs": [
+      "nbdev-test"
+    ]
+  },
+  {
+    "objectID": "index.html#usage",
+    "href": "index.html#usage",
+    "title": "nbdev-test",
+    "section": "Usage",
+    "text": "Usage\n\nInstallation\nInstall latest from the GitHub repository:\n$ pip install git+https://github.com/slegroux/nbdev-test.git\nor from conda\n$ conda install -c slegroux nbdev_test\nor from pypi\n$ pip install nbdev_test\n\n\nDocumentation\nDocumentation can be found hosted on this GitHub repository’s pages. Additionally you can find package manager specific guidelines on conda and pypi respectively.",
+    "crumbs": [
+      "nbdev-test"
+    ]
+  },
+  {
+    "objectID": "index.html#how-to-use",
+    "href": "index.html#how-to-use",
+    "title": "nbdev-test",
+    "section": "How to use",
+    "text": "How to use\nFill me in please! Don’t forget code examples:\n\n1+1",
+    "crumbs": [
+      "nbdev-test"
+    ]
+  },
+  {
+    "objectID": "core.html",
+    "href": "core.html",
+    "title": "core",
+    "section": "",
+    "text": "source\n\nforce_log_output\n\n force_log_output (message, level=20)\n\n\nsource\n\n\nImageDataset\n\n ImageDataset ()\n\nBase class for image datasets providing visualization of (image, label) samples\n\nsource\n\n\nMNISTDataset\n\n MNISTDataset (data_dir:str='../data/image', train:bool=True, transform:&lt;m\n               odule'torchvision.transforms.transforms'from'/opt/hostedtoo\n               lcache/Python/3.10.15/x64/lib/python3.10/site-\n               packages/torchvision/transforms/transforms.py'&gt;=Compose(\n               ToTensor()     Normalize(mean=(0.1307,), std=(0.3081,)) ))\n\nMNIST digit dataset\n\n\n\n\n\n\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\ndata_dir\nstr\n../data/image\npath where data is saved\n\n\ntrain\nbool\nTrue\ntrain or test dataset\n\n\ntransform\ntorchvision.transforms.transforms\nCompose( ToTensor() Normalize(mean=(0.1307,), std=(0.3081,)))\n\n\n\n\n\nlogger.info(\"test stuff\")\ntest = MNISTDataset(data_dir='/tmp/new', train=True)\n\n2024-12-21 12:30:05,873 - __main__ - INFO - ImageDataset: init\n##### ImageDataset: init\n2024-12-21 12:30:05,874 - __main__ - INFO - MNISTDataset: init\n\n\n\nds = MNIST(\"/tmp/new2\", train=True, download=True)\n\n\nsource\n\n\nfoo\n\n foo ()",
+    "crumbs": [
+      "core"
+    ]
+  }
+]
