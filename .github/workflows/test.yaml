@@ -16,6 +16,7 @@ jobs:
           pwd
           ls
           mkdir -p data/tutu
+          ls
 
       # - name: Install dependencies
       #   run: |
