@@ -34,6 +34,7 @@ class ImageDataset(Dataset):
 
     def __init__(self):
         logger.info("ImageDataset: init")
+        print("##### ImageDataset: init")
         super().__init__()
 
     def show_idx(self,
