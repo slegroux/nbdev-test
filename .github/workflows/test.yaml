@@ -14,9 +14,9 @@ jobs:
       - name: test stuff
         run: |
           pwd
-          ls
           mkdir -p data/tutu
           ls
+          ls /tmp
 
       # - name: Install dependencies
       #   run: |
