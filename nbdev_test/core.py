@@ -27,6 +27,15 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 logger.debug("This will be visible in GitHub Actions")
+# Multiple output methods
+print("PRINT: Diagnostic output")
+sys.stdout.write("STDOUT: Diagnostic output\n")
+sys.stderr.write("STDERR: Diagnostic output\n")
+
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+logger.debug("LOGGER DEBUG: Diagnostic message")
+logger.info("LOGGER INFO: Diagnostic message")
 
 # %% ../nbs/00_core.ipynb 4
 class ImageDataset(Dataset):

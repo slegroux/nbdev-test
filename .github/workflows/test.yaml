@@ -27,4 +27,7 @@ jobs:
 
       - name: Run tests
         run: |
-          nbdev_test --do_print --timing --flags verbose
+          python -c "import sys; print(f'Python version: {sys.version}')"
+          python -c "import logging; logging.basicConfig(level=logging.DEBUG); logging.debug('Logging test')"
+          PYTHONPATH=. python -m nbdev.test --help
+          PYTHONPATH=. nbdev_test --do_print --timing -v
