@@ -15,11 +15,14 @@ from torch.utils.data import DataLoader, random_split, Dataset
 from typing import List, Tuple, Union, Optional
 import os
 import logging
+import sys
 
 logging.basicConfig(
     level=logging.DEBUG,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handlers=[logging.StreamHandler()]  # This ensures logs go to console
+    handlers=[
+        logging.StreamHandler(sys.stdout)  # Explicitly use stdout
+    ]
 )
 
 logger = logging.getLogger(__name__)
