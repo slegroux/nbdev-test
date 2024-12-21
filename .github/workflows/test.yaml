@@ -26,5 +26,16 @@ jobs:
           nbdev_export
 
       - name: Run tests
+        env:
+          PYTHONPATH: .
+          LOGGING_LEVEL: DEBUG
         run: |
           nbdev_test --do_print --timing
+
+      - name: Display log file
+        run: |
+          cat nbdev_test_log.txt || echo "No log file found"
+
+      - name: Display diagnostic log
+        run: |
+          cat nbdev_diagnostic_log.txt || echo "No diagnostic log file found"

@@ -16,4 +16,5 @@ d = { 'settings': { 'branch': 'main',
                                  'nbdev_test.core.MNISTDataset.__len__': ('core.html#mnistdataset.__len__', 'nbdev_test/core.py'),
                                  'nbdev_test.core.MNISTDataset.train_dev_split': ( 'core.html#mnistdataset.train_dev_split',
                                                                                    'nbdev_test/core.py'),
-                                 'nbdev_test.core.foo': ('core.html#foo', 'nbdev_test/core.py')}}}
+                                 'nbdev_test.core.foo': ('core.html#foo', 'nbdev_test/core.py'),
+                                 'nbdev_test.core.force_log_output': ('core.html#force_log_output', 'nbdev_test/core.py')}}}
