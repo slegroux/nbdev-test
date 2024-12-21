@@ -10,32 +10,37 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.10'
-
-      - name: Install dependencies
+      
+      - name: test stuff
         run: |
-          python -m pip install --upgrade pip
-          pip install nbdev
-          pip install -e ".[dev]"
+          pwd
+          ls
 
-      - name: Clean notebooks
-        run: |
-          nbdev_clean
+      # - name: Install dependencies
+      #   run: |
+      #     python -m pip install --upgrade pip
+      #     pip install nbdev
+      #     pip install -e ".[dev]"
 
-      - name: Export notebooks
-        run: |
-          nbdev_export
+      # - name: Clean notebooks
+      #   run: |
+      #     nbdev_clean
 
-      - name: Run tests
-        env:
-          PYTHONPATH: .
-          LOGGING_LEVEL: DEBUG
-        run: |
-          nbdev_test --do_print --timing
+      # - name: Export notebooks
+      #   run: |
+      #     nbdev_export
 
-      - name: Display log file
-        run: |
-          cat nbdev_test_log.txt || echo "No log file found"
+      # - name: Run tests
+      #   env:
+      #     PYTHONPATH: .
+      #     LOGGING_LEVEL: DEBUG
+      #   run: |
+      #     nbdev_test --do_print --timing
 
-      - name: Display diagnostic log
-        run: |
-          cat nbdev_diagnostic_log.txt || echo "No diagnostic log file found"
+      # - name: Display log file
+      #   run: |
+      #     cat nbdev_test_log.txt || echo "No log file found"
+
+      # - name: Display diagnostic log
+      #   run: |
+      #     cat nbdev_diagnostic_log.txt || echo "No diagnostic log file found"
