@@ -1,5 +1,5 @@
 name: CI
-on:  [workflow_dispatch, pull_request, push]
+on: [workflow_dispatch, pull_request, push]
 
 jobs:
   test:
@@ -38,23 +38,24 @@ jobs:
         steps:
           - uses: actions/checkout@v4
             if: ${{ inputs.skip_checkout != 'true' }}
+      
           - uses: actions/setup-python@v5
             with:
-              python-version: ${{ inputs.version }}
-              #cache: "pip"
-              #cache-dependency-path: settings.ini
+              python-version: ${{ inputs.version || '3.10' }}
+      
           - name: Test with nbdev
             env:
               USE_PRE: ${{ inputs.pre }}
               OBJC_DISABLE_INITIALIZE_FORK_SAFETY: YES
               SKIP_TEST: ${{ inputs.skip_test }}
               FLAGS: ${{ inputs.flags }}
-              TORCH_CPU: "${{ inputs.torch_cpu }}"
+              TORCH_CPU: ${{ inputs.torch_cpu }}
             shell: bash
             run: |
               set -ux
               python -m pip install --upgrade pip
-              if [ $USE_PRE ]; then
+              
+              if [ "$USE_PRE" ]; then
                 pip install -U git+https://github.com/fastai/fastcore.git
                 pip install -U git+https://github.com/fastai/ghapi.git
                 pip install -U git+https://github.com/fastai/execnb.git
@@ -62,35 +63,43 @@ jobs:
               else
                 pip install -U nbdev
               fi
+              
               echo "Doing editable install..."
-              if [ $TORCH_CPU ]; then
+              if [ "$TORCH_CPU" = true ]; then
                 test -f setup.py && pip install -e ".[dev]" --extra-index-url https://download.pytorch.org/whl/cpu
               else
                 test -f setup.py && pip install -e ".[dev]"
               fi
+              
               echo "Check we are starting with clean git checkout"
               if [[ `git status --porcelain -uno` ]]; then
                 git diff
                 echo "git status is not clean"
                 false
               fi
+              
               echo "Trying to strip out notebooks"
               nbdev_clean
+              
               echo "Check that strip out was unnecessary"
-              git status -s # display the status to see which nbs need cleaning up
+              git status -s
+              
               if [[ `git status --porcelain -uno` ]]; then
                 git status -uno
                 echo -e "!!! Detected unstripped out notebooks\n!!!Remember to run nbdev_install_hooks"
                 echo -e "This error can also happen if you are using an older version of nbdev relative to what is in CI.  Please try to upgrade nbdev with the command `pip install -U nbdev`"
                 false
               fi
+              
               nbdev_export
+              
               if [[ `git status --porcelain -uno` ]]; then
                 echo "::error::Notebooks and library are not in sync.  Please run nbdev_export."
                 git status -uno
                 git diff
-                exit 1;
+                exit 1
               fi
-              if [ ! $SKIP_TEST ]; then
+              
+              if [ ! "$SKIP_TEST" ]; then
                 nbdev_test --flags "$FLAGS"
               fi
